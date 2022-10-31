@@ -42,4 +42,4 @@ class Server:
         """Закрытие соединения"""
         if self.connection:
             self.connection.close()
-            print('[INFO] Соединение с базой данных остановлено')
+            print('[ИНФО] Соединение с базой данных остановлено')

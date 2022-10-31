@@ -1,6 +1,9 @@
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication
+from user import User
+from Views.mainView.mainView import mainView
+from Views.signView.signView import signView
 from server import Server
 from Views.loginView.loginView import loginView
 
@@ -17,17 +20,33 @@ widget.setFixedWidth(1280)
 widget.setFixedHeight(720)
 widget.setWindowTitle('Автоматизированная библиотечная информационная система')
 
+# ---- ПОЛЬЗОВАТЕЛЬСКАЯ РОЛЬ                                                                                        ----
+miUser = User()
+
 # -- Словарь с окнами --
 loginWindow = loginView()
+signWindow = signView()
+mainWindow = mainView()
 WIDGET_DICT = {
-    'login screen': loginWindow
-}
+    'login screen': loginWindow, #0
+    'sign screen': signWindow,   #1
+    'main screen': mainWindow    #2
+    }
+widget.addWidget(WIDGET_DICT['login screen'])
+loginWindow.setWidget(widget)
+loginWindow.setUser(miUser)
+widget.addWidget(WIDGET_DICT['sign screen'])
+signWindow.setWidget(widget)
+signWindow.setUser(miUser)
+widget.addWidget(WIDGET_DICT['main screen'])
+mainWindow.setWidget(widget)
+mainWindow.setUser(miUser)
 
 # -- Инициализация экрана входа --
-widget.addWidget(WIDGET_DICT['login screen'])
 try:
     temp = server.selectVersion()
     loginWindow.setVersion(str(server.selectVersion()))
+    signWindow.setVersion(str(server.selectVersion()))
 except Exception as e:
     loginWindow.setVersion('unversioned')
 

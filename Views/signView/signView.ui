@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ABIS</class>
- <widget class="QMainWindow" name="ABIS">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,20 +13,17 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="signup_win">
-   <property name="tabletTracking">
-    <bool>false</bool>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="loginLable">
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="signLable">
       <property name="font">
        <font>
         <pointsize>28</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Вход</string>
+       <string>Регистрация</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -36,15 +33,15 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QLineEdit" name="loginName">
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="signName">
       <property name="inputMask">
        <string/>
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QLineEdit" name="loginPassword">
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="signPassword">
       <property name="inputMask">
        <string/>
       </property>
@@ -53,15 +50,15 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="loginButton">
+    <item row="3" column="0">
+     <widget class="QPushButton" name="signButton">
       <property name="text">
-       <string>Войти</string>
+       <string>Зарегистрироваться</string>
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QCommandLinkButton" name="gSignButton">
+    <item row="4" column="0">
+     <widget class="QCommandLinkButton" name="gLoginButton">
       <property name="font">
        <font>
         <family>Segoe UI</family>
@@ -74,11 +71,11 @@
        </font>
       </property>
       <property name="text">
-       <string>Перейти к регистрации</string>
+       <string>Перейти ко входу</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item row="5" column="0">
      <widget class="QLabel" name="version">
       <property name="cursor">
        <cursorShape>ArrowCursor</cursorShape>
@@ -89,6 +86,16 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>21</height>
+    </rect>
+   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
