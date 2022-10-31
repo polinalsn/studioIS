@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.uic import loadUi
 
 from Views.dialogs.dialogValid import dialogValid
+from Views.mainView.mainView import mainView
 
 
 class signView(QtWidgets.QMainWindow):
@@ -45,6 +46,13 @@ class signView(QtWidgets.QMainWindow):
             with open('users.txt', 'a') as file:
                 file.write(self.signName.text() + ',' + self.signPassword.text() + ',' + 'user\n')
                 self.user.setData(self.signName.text(), self.signPassword.text(), 'user')
+                self.widget.setCurrentIndex(2)
+                self.mainWindow = mainView()
+                self.widget.addWidget(self.mainWindow)
+                self.mainWindow.setWidget(self.widget)
+                self.mainWindow.setUser(self.user)
+                self.mainWindow.setupUI()
+                self.mainWindow.loadProfile()
                 self.widget.setCurrentIndex(2)
         else:
             self.push = dialogValid()

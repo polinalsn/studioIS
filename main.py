@@ -2,16 +2,13 @@ import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication
 from user import User
-from Views.mainView.mainView import mainView
 from Views.signView.signView import signView
 from server import Server
 from Views.loginView.loginView import loginView
 
-
 # ---- ПОДКЛЮЧЕНИЕ СЕРВЕРА                                                                                          ----
 server = Server()
 server.connectDB()
-
 
 # ---- ПОДКЛЮЧЕНИЕ ИНТЕРФЕЙСА                                                                                       ----
 app = QApplication(sys.argv)
@@ -26,21 +23,16 @@ miUser = User()
 # -- Словарь с окнами --
 loginWindow = loginView()
 signWindow = signView()
-mainWindow = mainView()
 WIDGET_DICT = {
-    'login screen': loginWindow, #0
-    'sign screen': signWindow,   #1
-    'main screen': mainWindow    #2
-    }
+    'login screen': loginWindow,  # 0
+    'sign screen': signWindow     # 1
+}
 widget.addWidget(WIDGET_DICT['login screen'])
 loginWindow.setWidget(widget)
 loginWindow.setUser(miUser)
 widget.addWidget(WIDGET_DICT['sign screen'])
 signWindow.setWidget(widget)
 signWindow.setUser(miUser)
-widget.addWidget(WIDGET_DICT['main screen'])
-mainWindow.setWidget(widget)
-mainWindow.setUser(miUser)
 
 # -- Инициализация экрана входа --
 try:

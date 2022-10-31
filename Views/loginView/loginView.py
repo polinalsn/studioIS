@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.uic import loadUi
 
 from Views.dialogs.dialogValid import dialogValid
+from Views.mainView.mainView import mainView
 
 
 class loginView(QtWidgets.QMainWindow):
@@ -54,6 +55,12 @@ class loginView(QtWidgets.QMainWindow):
                     print('[INFO] Пользователь найден')
                     cringe = line.split(',')
                     self.user.setData(cringe[0], cringe[1], cringe[2])
+                    self.mainWindow = mainView()
+                    self.widget.addWidget(self.mainWindow)
+                    self.mainWindow.setWidget(self.widget)
+                    self.mainWindow.setUser(self.user)
+                    self.mainWindow.setupUI()
+                    self.mainWindow.loadProfile()
                     self.widget.setCurrentIndex(2)
                     break
         if not found:
