@@ -1,2 +1,3 @@
 Egor,1234,admin
-»м€пользовател€,ѕароль,user
+user,1,user
+admin,admin,admin

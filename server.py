@@ -43,3 +43,10 @@ class Server:
         if self.connection:
             self.connection.close()
             print('[ИНФО] Соединение с базой данных остановлено')
+
+    def selectBooks(self):
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(
+            "SELECT * FROM books ORDER BY id_book;"
+        )
+        return self.cursor.fetchall()

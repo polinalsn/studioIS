@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -124,6 +124,37 @@
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
+       <widget class="QTableWidget" name="tabelBook">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1071</width>
+          <height>671</height>
+         </rect>
+        </property>
+        <property name="columnCount">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="updBook">
+        <property name="geometry">
+         <rect>
+          <x>1080</x>
+          <y>620</y>
+          <width>161</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Обновить</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

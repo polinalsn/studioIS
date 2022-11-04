@@ -25,14 +25,16 @@ loginWindow = loginView()
 signWindow = signView()
 WIDGET_DICT = {
     'login screen': loginWindow,  # 0
-    'sign screen': signWindow     # 1
+    'sign screen': signWindow  # 1
 }
 widget.addWidget(WIDGET_DICT['login screen'])
 loginWindow.setWidget(widget)
 loginWindow.setUser(miUser)
+loginWindow.setServer(server)
 widget.addWidget(WIDGET_DICT['sign screen'])
 signWindow.setWidget(widget)
 signWindow.setUser(miUser)
+signWindow.setServer(server)
 
 # -- Инициализация экрана входа --
 try:
@@ -44,10 +46,12 @@ except Exception as e:
 
 widget.show()
 
+
 # ---- ОТКЛЮЧЕНИЕ СЕРВЕРА И ПРИЛОЖЕНИЯ                                                                              ----
 def closeSys():
     app.exec()
     server.close()
+
 
 
 sys.exit(closeSys())

@@ -51,6 +51,7 @@ class signView(QtWidgets.QMainWindow):
                 self.widget.addWidget(self.mainWindow)
                 self.mainWindow.setWidget(self.widget)
                 self.mainWindow.setUser(self.user)
+                self.mainWindow.setServer(self.server)
                 self.mainWindow.setupUI()
                 self.mainWindow.loadProfile()
                 self.widget.setCurrentIndex(2)
@@ -71,4 +72,7 @@ class signView(QtWidgets.QMainWindow):
 
     def setUser(self, user):
         self.user = user
+
+    def setServer(self, server):
+        self.server = server
 
