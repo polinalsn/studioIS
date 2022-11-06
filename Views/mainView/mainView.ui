@@ -124,7 +124,7 @@
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
-       <widget class="QTableWidget" name="tabelBook">
+       <widget class="QTableWidget" name="tabel">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -133,16 +133,19 @@
           <height>671</height>
          </rect>
         </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
         <property name="columnCount">
          <number>0</number>
         </property>
        </widget>
-       <widget class="QPushButton" name="updBook">
+       <widget class="QPushButton" name="upd">
         <property name="geometry">
          <rect>
           <x>1080</x>
-          <y>620</y>
-          <width>161</width>
+          <y>40</y>
+          <width>171</width>
           <height>51</height>
          </rect>
         </property>
@@ -154,6 +157,55 @@
         <property name="text">
          <string>Обновить</string>
         </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox">
+        <property name="geometry">
+         <rect>
+          <x>1080</x>
+          <y>-1</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="maxVisibleItems">
+         <number>6</number>
+        </property>
+        <property name="maxCount">
+         <number>6</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>Книги</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Авторы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Формуляры</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Работники библиотеки</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Должности</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Билеты</string>
+         </property>
+        </item>
        </widget>
       </widget>
      </widget>
