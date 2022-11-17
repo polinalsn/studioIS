@@ -78,3 +78,25 @@ class Server:
             "SELECT * FROM tickets;"
         )
         return self.cursor.fetchall()
+
+    def insertBooks(self, idBook, nameBook, state, genre, publish_year, id_author):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO books(id_book, name_book, state, genre, publish_year, id_author) VALUES ({idBook}, "
+                F"'{nameBook}', {state}, '{genre}', '{publish_year}', {id_author});"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def insertAuthors(self, idAuthor, firstName, lastName, birthday):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO authors(id_author, first_name, last_name, birthday) VALUES ({idAuthor}, '{firstName}', "
+                F"'{lastName}', '{birthday}');"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
