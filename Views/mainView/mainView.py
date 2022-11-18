@@ -86,15 +86,17 @@ class mainView(QtWidgets.QMainWindow):
 
         # -- Настройка доп херни --
         self.date1.setFont(
-            QtGui.QFont('SansSerif', 18)
+            QtGui.QFont('SansSerif', 10)
         )
         self.date2.setFont(
-            QtGui.QFont('SansSerif', 18)
+            QtGui.QFont('SansSerif', 10)
         )
         self.checkBox.setFont(
-            QtGui.QFont('SansSerif', 18)
+            QtGui.QFont('SansSerif', 10)
         )
-
+        self.date3.setFont(
+            QtGui.QFont('SansSerif', 10)
+        )
         #-- Настройка стартового окна --
         self.label1.setVisible(True)
         self.label2.setVisible(True)
@@ -126,27 +128,12 @@ class mainView(QtWidgets.QMainWindow):
     def checkFunc(self):
         match self.boxFunc.currentText():
             case 'Добавить':
-                self.checkTabel()
+                self.setClassicVisible()
             case 'Обновить':
-                self.checkTabel()
+                self.setClassicVisible()
             case 'Удалить':
-                self.label1.setVisible(True)
-                self.label2.setVisible(False)
-                self.label3.setVisible(False)
-                self.label4.setVisible(False)
-                self.label5.setVisible(False)
-                self.label6.setVisible(False)
+                self.setDeleteVisible()
 
-                self.input1.setVisible(True)
-                self.input2.setVisible(False)
-                self.input3.setVisible(False)
-                self.input4.setVisible(False)
-                self.input5.setVisible(False)
-                self.input6.setVisible(False)
-
-
-
-#TODO: РЕАЛИЗОВАТЬ insert
     def tryFunc(self):
         match self.boxFunc.currentText():
             case 'Добавить':
@@ -171,20 +158,143 @@ class mainView(QtWidgets.QMainWindow):
                         else:
                             self.answState.setText("Ошибка в вводимых данных!")
                     case 'Формуляры':
-                        pass
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        date1 = self.date2.date()
+                        year, month, day = date1.getDate()
+                        strin1 = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.insertFormulars(self.input1.text(), self.input2.text(), self.input3.text(), strin
+                                                       , strin1, self.input6.text()):
+                            self.answState.setText("Успешно!")
+                        else:
+                            self.answState.setText("Ошибка в вводимых данных!")
                     case 'Читательские билеты':
-                        pass
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.insertTickets(self.input1.text(), self.input2.text(), self.input3.text(),
+                                                     strin, self.input5.text()):
+                            self.answState.setText("Успешно!")
+                        else:
+                            self.answState.setText("Ошибка в вводимых данных!")
                     case 'Работники':
-                        pass
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.insertWorkers(self.input1.text(), self.input2.text(), self.input3.text(),
+                                                     strin, self.input5.text()):
+                            self.answState.setText("Успешно!")
+                        else:
+                            self.answState.setText("Ошибка в вводимых данных!")
                     case 'Должности':
-                        pass
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.insertPost(self.input1.text(), self.input2.text(), self.date3.text(),
+                                                  self.input4.text()):
+                            self.answState.setText("Успешно!")
+                        else:
+                            self.answState.setText("Ошибка в вводимых данных!")
             case 'Обновить':
-                pass
+                match self.boxTabel.currentText():
+                    case 'Книги':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updateBooks(self.input1.text(), self.input2.text(),
+                                                   self.checkBox.isChecked(), self.input4.text(), strin,
+                                                   self.input6.text()):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
+                    case 'Авторы':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updateAuthors(self.input1.text(), self.input2.text(), self.input3.text(),
+                                                     strin):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
+                    case 'Формуляры':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        date1 = self.date2.date()
+                        year, month, day = date1.getDate()
+                        strin1 = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updateFormulars(self.input1.text(), self.input2.text(), self.input3.text(), strin
+                                , strin1, self.input6.text()):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
+                    case 'Читательские билеты':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updateTickets(self.input1.text(), self.input2.text(), self.input3.text(),
+                                                     strin, self.input5.text()):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
+                    case 'Работники':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updateWorkers(self.input1.text(), self.input2.text(), self.input3.text(),
+                                                     strin, self.input5.text()):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
+                    case 'Должности':
+                        date = self.date1.date()
+                        year, month, day = date.getDate()
+                        strin = str(year) + '-' + str(month) + '-' + str(day)
+                        if self.server.updatePost(self.input1.text(), self.input2.text(), self.date3.text(),
+                                                  self.input4.text()):
+                            self.answState.setText("Данные обновлены!")
+                        else:
+                            self.answState.setText("Ошибка в новых данных!")
             case 'Удалить':
-                pass
+                match self.boxTabel.currentText():
+                    case 'Книги':
+                        if self.server.deleteBook(self.input1.text()):
+                            self.answState.setText("Книга успешно удалена!")
+                        else:
+                            self.answState.setText("Книгу нельзя удалить!")
+                    case 'Авторы':
+                        if self.server.deleteAuthor(self.input1.text()):
+                            self.answState.setText("Автор успешно удален!")
+                        else:
+                            self.answState.setText("Автора нельзя удалить!")
+                    case 'Формуляры':
+                        if self.server.deleteFormular(self.input1.text()):
+                            self.answState.setText("Формуляр успешно удален!")
+                        else:
+                            self.answState.setText("Формуляр нельзя удалить!")
+                    case 'Читательские билеты':
+                        if self.server.deleteTicket(self.input1.text()):
+                            self.answState.setText("Читательский билет успешно удален!")
+                        else:
+                            self.answState.setText("Читательский билет нельзя удалить!")
+                    case 'Работники':
+                        if self.server.deleteWorker(self.input1.text()):
+                            self.answState.setText("Работник успешно удален!")
+                        else:
+                            self.answState.setText("Работника нельзя удалить!")
+                    case 'Должности':
+                        if self.server.deletePost(self.input1.text()):
+                            self.answState.setText("Должность успешна удалена!")
+                        else:
+                            self.answState.setText("Должность нельзя удалить!")
 
 
     def checkTabel(self):
+        self.boxFunc.setCurrentText('Добавить')
+        self.setClassicVisible()
+
+    def setClassicVisible(self):
         match self.boxTabel.currentText():
             case 'Книги':
                 self.label1.setVisible(True)
@@ -213,7 +323,6 @@ class mainView(QtWidgets.QMainWindow):
                 self.label5.setText('Дата публикации')
                 self.label6.setText('ID Автора')
 
-                self.boxFunc.setCurrentText('Добавить')
             case 'Авторы':
                 self.label1.setVisible(True)
                 self.label2.setVisible(True)
@@ -239,7 +348,6 @@ class mainView(QtWidgets.QMainWindow):
                 self.label3.setText('Фамилия')
                 self.label4.setText('Дата рождения')
 
-                self.boxFunc.setCurrentText('Добавить')
             case 'Формуляры':
                 self.label1.setVisible(True)
                 self.label2.setVisible(True)
@@ -251,8 +359,8 @@ class mainView(QtWidgets.QMainWindow):
                 self.input1.setVisible(True)
                 self.input2.setVisible(True)
                 self.input3.setVisible(True)
-                self.input4.setVisible(True)
-                self.input5.setVisible(True)
+                self.input4.setVisible(False)
+                self.input5.setVisible(False)
                 self.input6.setVisible(True)
 
                 self.checkBox.setVisible(False)
@@ -267,7 +375,6 @@ class mainView(QtWidgets.QMainWindow):
                 self.label5.setText('Дата возврата')
                 self.label6.setText('Книги')
 
-                self.boxFunc.setCurrentText('Добавить')
             case 'Работники':
                 self.label1.setVisible(True)
                 self.label2.setVisible(True)
@@ -279,7 +386,7 @@ class mainView(QtWidgets.QMainWindow):
                 self.input1.setVisible(True)
                 self.input2.setVisible(True)
                 self.input3.setVisible(True)
-                self.input4.setVisible(True)
+                self.input4.setVisible(False)
                 self.input5.setVisible(True)
                 self.input6.setVisible(False)
 
@@ -294,7 +401,6 @@ class mainView(QtWidgets.QMainWindow):
                 self.label4.setText('День рождения')
                 self.label5.setText('Должность')
 
-                self.boxFunc.setCurrentText('Добавить')
             case 'Должности':
                 self.label1.setVisible(True)
                 self.label2.setVisible(True)
@@ -305,7 +411,7 @@ class mainView(QtWidgets.QMainWindow):
 
                 self.input1.setVisible(True)
                 self.input2.setVisible(True)
-                self.input3.setVisible(True)
+                self.input3.setVisible(False)
                 self.input4.setVisible(True)
                 self.input5.setVisible(False)
                 self.input6.setVisible(False)
@@ -320,7 +426,6 @@ class mainView(QtWidgets.QMainWindow):
                 self.label3.setText('Дата принятия')
                 self.label4.setText('Уровень допуска')
 
-                self.boxFunc.setCurrentText('Добавить')
             case 'Читательские билеты':
                 self.label1.setVisible(True)
                 self.label2.setVisible(True)
@@ -332,7 +437,7 @@ class mainView(QtWidgets.QMainWindow):
                 self.input1.setVisible(True)
                 self.input2.setVisible(True)
                 self.input3.setVisible(True)
-                self.input4.setVisible(True)
+                self.input4.setVisible(False)
                 self.input5.setVisible(True)
                 self.input6.setVisible(False)
 
@@ -347,7 +452,25 @@ class mainView(QtWidgets.QMainWindow):
                 self.label4.setText('Дата рождения')
                 self.label5.setText('Рейтинг')
 
-                self.boxFunc.setCurrentText('Добавить')
+    def setDeleteVisible(self):
+        self.label1.setVisible(True)
+        self.label2.setVisible(False)
+        self.label3.setVisible(False)
+        self.label4.setVisible(False)
+        self.label5.setVisible(False)
+        self.label6.setVisible(False)
+
+        self.input1.setVisible(True)
+        self.input2.setVisible(False)
+        self.input3.setVisible(False)
+        self.input4.setVisible(False)
+        self.input5.setVisible(False)
+        self.input6.setVisible(False)
+
+        self.date1.setVisible(False)
+        self.date2.setVisible(False)
+        self.date3.setVisible(False)
+        self.checkBox.setVisible(False)
 
     def setupUI(self):
         loadUi("Views\mainView\mainView.ui", self)

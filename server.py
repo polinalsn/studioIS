@@ -69,21 +69,21 @@ class Server:
 
     def selectPosts(self):
         self.cursor.execute(
-            "SELECT * FROM posts;"
+            "SELECT * FROM posts ORDER BY name_post;"
         )
         return self.cursor.fetchall()
 
     def selectTickets(self):
         self.cursor.execute(
-            "SELECT * FROM tickets;"
+            "SELECT * FROM tickets ORDER BY id_ticket;"
         )
         return self.cursor.fetchall()
 
-    def insertBooks(self, idBook, nameBook, state, genre, publish_year, id_author):
+    def insertBooks(self, idBook, nameBook, state, genre, publishYear, idAuthor):
         try:
             self.cursor.execute(
                 F"INSERT INTO books(id_book, name_book, state, genre, publish_year, id_author) VALUES ({idBook}, "
-                F"'{nameBook}', {state}, '{genre}', '{publish_year}', {id_author});"
+                F"'{nameBook}', {state}, '{genre}', '{publishYear}', {idAuthor});"
             )
             return True
         except Exception as e:
@@ -95,6 +95,176 @@ class Server:
             self.cursor.execute(
                 F"INSERT INTO authors(id_author, first_name, last_name, birthday) VALUES ({idAuthor}, '{firstName}', "
                 F"'{lastName}', '{birthday}');"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def insertFormulars(self, formularNum, idTicket, idWorker, dateTake, dateBack, books):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO formulars(formular_num, id_ticket, id_worker, date_take, date_back, books) VALUES ("
+                F"{formularNum}, {idTicket}, {idWorker}, '{dateTake}', '{dateBack}', '{books}');"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def insertTickets(self, idTicket, firstName, lastName, birthday, rating):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO tickets(id_ticket, first_name, last_name, birthday, rating) VALUES ({idTicket}, "
+                F"'{firstName}', '{lastName}', '{birthday}', {rating});"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def insertWorkers(self, idWorker, firstName, lastName, birthday, namePost):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO library_workers(id_worker, first_name, last_name, birthday, name_post) VALUES ({idWorker},"
+                F"'{firstName}', '{lastName}', '{birthday}', '{namePost}');"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def insertPost(self, namePost, salary, term, clearenceLevel):
+        try:
+            self.cursor.execute(
+                F"INSERT INTO posts(name_post, salary, term, clearence_level) VALUES ('{namePost}', {salary}, '{term}',"
+                F" {clearenceLevel});"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updateAuthors(self, idAuthor, firstName, lastName, birthday):
+        try:
+            self.cursor.execute(
+                F"UPDATE authors SET first_name='{firstName}', last_name='{lastName}', birthday='{birthday}'"
+                F"WHERE id_author = {idAuthor};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updateBooks(self, idBook, nameBook, state, genre, publishYear, idAuthor):
+        try:
+            self.cursor.execute(
+                F"UPDATE books SET name_book='{nameBook}', state={state}, genre='{genre}', publish_year = '{publishYear}'"
+                F", id_author={idAuthor} WHERE id_book = {idBook};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updateFormulars(self, formularNum, idTicket, idWorker, dateTake, dateBack, books):
+        try:
+            self.cursor.execute(
+                F"UPDATE formulars SET id_ticket={idTicket}, id_worker={idWorker}, date_take='{dateTake}', "
+                F"date_back = '{dateBack}', books='{books}' WHERE formular_num = {formularNum};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updateTickets(self, idTicket, firstName, lastName, birthday, rating):
+        try:
+            self.cursor.execute(
+                F"UPDATE tickets SET first_name='{firstName}', last_name='{lastName}', birthday='{birthday}', "
+                F"rating = {rating} WHERE id_ticket = {idTicket};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updateWorkers(self, idWorker, firstName, lastName, birthday, namePost):
+        try:
+            self.cursor.execute(
+                F"UPDATE library_workers SET first_name='{firstName}', last_name='{lastName}', birthday='{birthday}', "
+                F"name_post = '{namePost}' WHERE id_worker = {idWorker};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def updatePost(self, namePost, salary, term, clearenceLevel):
+        try:
+            self.cursor.execute(
+                F"UPDATE posts SET salary={salary}, term='{term}', clearence_level ='{clearenceLevel}'"
+                F" WHERE name_post = '{namePost}';"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deleteBook(self, idBook):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM books WHERE id_book={idBook};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deleteAuthor(self, idAuthor):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM authors WHERE id_author={idAuthor};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deleteFormular(self, formularNum):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM formulars WHERE formular_num={formularNum};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deleteTicket(self, idTicket):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM tickets WHERE id_ticket={idTicket};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deleteWorker(self, idWorker):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM library_workers WHERE id_worker={idWorker};"
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def deletePost(self, postName):
+        try:
+            self.cursor.execute(
+                F"DELETE FROM posts WHERE name_post='{postName}';"
             )
             return True
         except Exception as e:
