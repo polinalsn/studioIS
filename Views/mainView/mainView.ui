@@ -111,10 +111,10 @@
        <widget class="QCalendarWidget" name="calendarWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>0</x>
           <y>70</y>
-          <width>581</width>
-          <height>371</height>
+          <width>351</width>
+          <height>261</height>
          </rect>
         </property>
         <property name="selectionMode">
@@ -122,6 +122,111 @@
         </property>
         <property name="dateEditEnabled">
          <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableReaders">
+        <property name="geometry">
+         <rect>
+          <x>910</x>
+          <y>30</y>
+          <width>331</width>
+          <height>261</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelReaders">
+        <property name="geometry">
+         <rect>
+          <x>1010</x>
+          <y>0</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Читатели дня</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelAddBook">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>421</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Добавить книгу (Название/id формуляра)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineBookName">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>379</y>
+          <width>231</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineFormularId">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>379</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>370</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Добавить</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelChangeState">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>410</y>
+          <width>411</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Изменить наличие книги (id книги)</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineBookId">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>449</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>440</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Изменить</string>
         </property>
        </widget>
       </widget>
@@ -134,8 +239,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1261</width>
-          <height>611</height>
+          <width>831</width>
+          <height>661</height>
          </rect>
         </property>
         <property name="editTriggers">
@@ -149,7 +254,7 @@
         <property name="geometry">
          <rect>
           <x>1080</x>
-          <y>620</y>
+          <y>610</y>
           <width>171</width>
           <height>51</height>
          </rect>
@@ -166,9 +271,9 @@
        <widget class="QComboBox" name="comboBox">
         <property name="geometry">
          <rect>
-          <x>950</x>
+          <x>830</x>
           <y>0</y>
-          <width>311</width>
+          <width>431</width>
           <height>31</height>
          </rect>
         </property>
@@ -216,6 +321,113 @@
           <string>Билеты</string>
          </property>
         </item>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>30</y>
+          <width>421</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Поиск по полю&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="search1">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>70</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="search2">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>100</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="search3">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>130</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="search4">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>160</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="search5">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>190</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLabel" name="searchRes">
+        <property name="geometry">
+         <rect>
+          <x>1000</x>
+          <y>610</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_3">

@@ -43,42 +43,137 @@ class Server:
             self.connection.close()
             print('[ИНФО] Соединение с базой данных остановлено')
 
-    def selectBooks(self):
-        self.cursor.execute(
-            "SELECT * FROM books ORDER BY id_book;"
-        )
-        return self.cursor.fetchall()
+    def selectBooks(self, nameBook, state, genre, publishYear, idAuthor):
+        nameBook = nameBook.lower()
+        state = state.lower()
+        genre = genre.lower()
+        if state != 'true' or state != 'false':
+            stateStr = 'state IS NOT NULL'
+        else:
+            stateStr = f"state = '{state}'"
+        if publishYear == '':
+            yearStr = ''
+        else:
+            yearStr = f"and publish_year = date('{publishYear}')"
+        if idAuthor == '':
+            idStr = ''
+        else:
+            idStr = f"and id_author = {idAuthor}"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM books WHERE LOWER(name_book) LIKE '%{nameBook}%' and {stateStr} and LOWER(genre) LIKE "
+                f"'%{genre}%' {yearStr} {idStr} ORDER BY id_book;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
 
-    def selectAuthors(self):
-        self.cursor.execute(
-            "SELECT * FROM authors ORDER BY id_author;"
-        )
-        return self.cursor.fetchall()
+    def selectAuthors(self, firstName, lastName, birthday):
+        firstName = firstName.lower()
+        lastName = lastName.lower()
+        if birthday == '':
+            yearStr = ''
+        else:
+            yearStr = f"and birthday = date('{birthday}')"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM authors WHERE LOWER(first_name) LIKE '%{firstName}%' and LOWER(last_name) LIKE '%{lastName}%'"
+                f" {yearStr} ORDER BY id_author;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
 
-    def selectFormulars(self):
-        self.cursor.execute(
-            "SELECT * FROM formulars ORDER BY formular_num;"
-        )
-        return self.cursor.fetchall()
+    def selectFormulars(self, idTicket, idWorker, dateTake, dateBack, books):
+        books = books.lower()
+        if dateTake == '':
+            yearStr = ''
+        else:
+            yearStr = f"and date_take = date('{dateTake}')"
+        if dateBack == '':
+            yearStr2 = ''
+        else:
+            yearStr2 = f"and date_back = date('{dateBack}')"
+        if idTicket == '':
+            idStr = ''
+        else:
+            idStr = f"and id_ticket = {idTicket}"
+        if idWorker == '':
+            idStr2 = ''
+        else:
+            idStr2 = f"and id_worker = {idWorker}"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM formulars WHERE Lower(books) LIKE '%{books}%' {idStr} {idStr2} {yearStr} {yearStr2}  "
+                f"ORDER BY formular_num;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
 
-    def selectLibraryWorkers(self):
-        self.cursor.execute(
-            "SELECT * FROM library_workers ORDER BY id_worker;"
-        )
-        return self.cursor.fetchall()
+    def selectLibraryWorkers(self, firstName, lastName, birthday, namePost):
+        firstName = firstName.lower()
+        lastName = lastName.lower()
+        namePost = namePost.lower()
+        if birthday == '':
+            yearStr = ''
+        else:
+            yearStr = f"and birthday = date('{birthday}')"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM library_workers WHERE LOWER(first_name) LIKE '%{firstName}%' and LOWER(last_name) LIKE "
+                f"'%{lastName}%' and LOWER(name_post) LIKE '%{namePost}%' {yearStr} ORDER BY id_worker;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
 
-    def selectPosts(self):
-        self.cursor.execute(
-            "SELECT * FROM posts ORDER BY name_post;"
-        )
-        return self.cursor.fetchall()
+    def selectPosts(self, salary, term, clearenceLevel):
+        if clearenceLevel == '':
+            idStr = ''
+        else:
+            idStr = f"and clearence_level = {clearenceLevel}"
+        if salary == '':
+            idStr2 = ''
+        else:
+            idStr2 = f"and salary = {salary}"
+        if term == '':
+            yearStr = ''
+        else:
+            yearStr = f"and term = date('{term}')"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM posts WHERE name_post LIKE '%%' {idStr} {idStr2} {yearStr} ORDER BY name_post;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
 
-    def selectTickets(self):
-        self.cursor.execute(
-            "SELECT * FROM tickets ORDER BY id_ticket;"
-        )
-        return self.cursor.fetchall()
-
+    def selectTickets(self, firstName, lastName, birthday, rating):
+        firstName = firstName.lower()
+        lastName = lastName.lower()
+        if birthday == '':
+            yearStr = ''
+        else:
+            yearStr = f"and birthday = date('{birthday}')"
+        if rating == '':
+            idStr = ''
+        else:
+            idStr = f"and rating = {rating}"
+        try:
+            self.cursor.execute(
+                f"SELECT * FROM tickets WHERE first_name LIKE '%{firstName}%' and last_name LIKE '%{lastName}%' {yearStr} "
+                f"{idStr} ORDER BY id_ticket;"
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
     def insertBooks(self, idBook, nameBook, state, genre, publishYear, idAuthor):
         try:
             self.cursor.execute(

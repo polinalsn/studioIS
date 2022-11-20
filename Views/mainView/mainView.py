@@ -15,8 +15,12 @@ class mainView(QtWidgets.QMainWindow):
         self.user = user
 
     def setData(self, Data):
-        self.data = Data
-        self.size = len(Data)
+        if Data != []:
+            self.data = Data
+            self.size = len(Data)
+            return True
+        else:
+            return False
 
     def setServer(self, server):
         self.server = server
@@ -83,6 +87,7 @@ class mainView(QtWidgets.QMainWindow):
         #-- Настройка комбобоксов --
         self.boxTabel.currentTextChanged.connect(self.checkTabel)
         self.boxFunc.currentTextChanged.connect(self.checkFunc)
+        self.comboBox.currentTextChanged.connect(self.changeSearchFields)
 
         # -- Настройка доп херни --
         self.date1.setFont(
@@ -289,7 +294,6 @@ class mainView(QtWidgets.QMainWindow):
                         else:
                             self.answState.setText("Должность нельзя удалить!")
 
-
     def checkTabel(self):
         self.boxFunc.setCurrentText('Добавить')
         self.setClassicVisible()
@@ -493,94 +497,163 @@ class mainView(QtWidgets.QMainWindow):
             case 'Билеты':
                 self.setupTicketTabel()
 
+    def changeSearchFields(self):
+        match self.comboBox.currentText():
+            case 'Книги':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(True)
+                self.search5.setVisible(True)
+            case 'Авторы':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(False)
+                self.search5.setVisible(False)
+            case 'Формуляры':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(True)
+                self.search5.setVisible(True)
+            case 'Работники библиотеки':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(True)
+                self.search5.setVisible(False)
+            case 'Должности':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(False)
+                self.search5.setVisible(False)
+            case 'Билеты':
+                self.search1.setVisible(True)
+                self.search2.setVisible(True)
+                self.search3.setVisible(True)
+                self.search4.setVisible(True)
+                self.search5.setVisible(False)
+
+
     def setupBookTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(6)
         self.tabel.setHorizontalHeaderLabels(
             ['ID Книги', 'Название книги', 'Статус', 'Жанр', 'Год издания', 'ID Автора'])
-        self.setData(self.server.selectBooks())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3]))
-            self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
-            tabelrow += 1
+        if (self.setData(self.server.selectBooks(self.search1.text(), self.search2.text(), self.search3.text(),
+                                                 self.search4.text(), self.search5.text()))):
+            self.searchRes.setText('Ок')
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3]))
+                self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear()
 
     def setupAuthorTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(4)
         self.tabel.setHorizontalHeaderLabels(['ID Автора', 'Имя', 'Фамилия', 'Дата рождения'])
-        self.setData(self.server.selectAuthors())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%m/%d/%Y')))
-            tabelrow += 1
+        if (self.setData(self.server.selectAuthors(self.search1.text(), self.search2.text(), self.search3.text()))):
+            self.searchRes.setText('Ок')
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%Y/%m/%d')))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear()
 
     def setupFormularTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(6)
         self.tabel.setHorizontalHeaderLabels(
             ['ID Формуляра', 'ID Билета', 'ID Рабочего', 'Дата выдачи', 'Дата возврата', 'Книги'])
-        self.setData(self.server.selectFormulars())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 5, QtWidgets.QTableWidgetItem(row[5]))
-            tabelrow += 1
+        if (self.setData(self.server.selectFormulars(self.search1.text(), self.search2.text(), self.search3.text(),
+                                                     self.search4.text(), self.search5.text()))):
+            self.searchRes.setText("Ок")
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 5, QtWidgets.QTableWidgetItem(row[5]))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear()
 
     def setupWorkerTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(5)
         self.tabel.setHorizontalHeaderLabels(['ID Рабочего', 'Имя', 'Фамилия', 'Дата рождения', 'Должность'])
-        self.setData(self.server.selectLibraryWorkers())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4]))
-            tabelrow += 1
+        if (self.setData(self.server.selectLibraryWorkers(self.search1.text(), self.search2.text(), self.search3.text(),
+                                                          self.search4.text()))):
+            self.searchRes.setText('Ок')
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(row[4]))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear()
 
     def setupPostTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(4)
         self.tabel.setHorizontalHeaderLabels(['Название должности', 'Зарплата', 'Дата найма', 'Уровень допуска'])
-        self.setData(self.server.selectPosts())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(row[0]))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-            tabelrow += 1
+        if (self.setData(self.server.selectPosts(self.search1.text(), self.search2.text(), self.search3.text()))):
+            self.searchRes.setText('Ок')
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(row[0]))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear( )
+
 
     def setupTicketTabel(self):
         self.tabel.clear()
         self.tabel.setColumnCount(5)
         self.tabel.setHorizontalHeaderLabels(['ID Читательского билета', 'Имя', 'Фамилия', 'Дата рождениия', 'Рейтинг'])
-        self.setData(self.server.selectTickets())
-        tabelrow = 0
-        self.tabel.setRowCount(self.size)
-        for row in self.data:
-            self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
-            self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%m/%d/%Y')))
-            self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
-            tabelrow += 1
+        if (self.setData(self.server.selectTickets(self.search1.text(), self.search2.text(), self.search3.text(),
+                                                   self.search4.text()))):
+            self.searchRes.setText('Ок')
+            tabelrow = 0
+            self.tabel.setRowCount(self.size)
+            for row in self.data:
+                self.tabel.setItem(tabelrow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
+                self.tabel.setItem(tabelrow, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.tabel.setItem(tabelrow, 2, QtWidgets.QTableWidgetItem(row[2]))
+                self.tabel.setItem(tabelrow, 3, QtWidgets.QTableWidgetItem(row[3].strftime('%Y/%m/%d')))
+                self.tabel.setItem(tabelrow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
+                tabelrow += 1
+        else:
+            self.searchRes.setText('Ошибка')
+            self.tabel.clear()
