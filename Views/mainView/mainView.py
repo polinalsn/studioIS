@@ -71,7 +71,16 @@ class mainView(QtWidgets.QMainWindow):
             QtGui.QFont('SansSerif', 16)
         )
         self.answState.setFont(
-            QtGui.QFont('SansSeruf', 14)
+            QtGui.QFont('SansSerif', 14)
+        )
+        self.labelReaders.setFont(
+            QtGui.QFont('SansSerif', 16)
+        )
+        self.labelAddBook.setFont(
+            QtGui.QFont('SansSerif', 16)
+        )
+        self.labelChangeState.setFont(
+            QtGui.QFont('SansSerif', 16)
         )
 
         # -- Настройка кнопок --
@@ -83,6 +92,14 @@ class mainView(QtWidgets.QMainWindow):
             QtGui.QFont('SansSerif', 32)
         )
         self.btnExec.clicked.connect(self.tryFunc)
+        self.btnAddBook.setFont(
+            QtGui.QFont('SansSerif', 14)
+        )
+        self.btnAddBook.clicked.connect(self.tryAdd)
+        self.btnChangeState.setFont(
+            QtGui.QFont('SansSerif', 14)
+        )
+        self.btnChangeState.clicked.connect(self.tryChange)
 
         #-- Настройка комбобоксов --
         self.boxTabel.currentTextChanged.connect(self.checkTabel)
@@ -90,6 +107,9 @@ class mainView(QtWidgets.QMainWindow):
         self.comboBox.currentTextChanged.connect(self.changeSearchFields)
 
         # -- Настройка доп херни --
+        self.calendarWidget.setFont(
+            QtGui.QFont('SansSerif', 16)
+        )
         self.date1.setFont(
             QtGui.QFont('SansSerif', 10)
         )
@@ -129,6 +149,21 @@ class mainView(QtWidgets.QMainWindow):
         self.label5.setText('Дата публикации')
         self.label6.setText('ID Автора')
         self.checkBox.setText('')
+        # -- Настройка таблицы дня --
+        self.row = self.server.selectReaders()
+        self.tableReaders.setItem(0, 0, QtWidgets.QTableWidgetItem(self.row[0][0]))
+        self.tableReaders.setItem(0, 1, QtWidgets.QTableWidgetItem(self.row[0][1]))
+        self.tableReaders.setFont(
+            QtGui.QFont('SansSerif', 9)
+        )
+
+    def tryAdd(self):
+        if (self.lineBookName.text() != '' and self.lineFormularId.text() != ''):
+            self.server.addBook(self.lineBookName.text(), self.lineFormularId.text())
+
+    def tryChange(self):
+        if (self.lineBookId.text() != ''):
+            self.server.changeState(self.lineBookId.text())
 
     def checkFunc(self):
         match self.boxFunc.currentText():

@@ -22,6 +22,7 @@ class Server:
             )
             self.connection.autocommit = True
             self.cursor = self.connection.cursor()
+            print('[INFO] Соединение установлено')
         except Exception as e:
             print('[INFO] Ошибка во время подключения к базе данных', e)
         return self.connection
@@ -365,3 +366,29 @@ class Server:
         except Exception as e:
             print(e)
             return False
+
+    def selectReaders(self):
+        try:
+            self.cursor.execute(
+                'SELECT public."getMax"(), public."getMin"();'
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
+
+    def addBook(self, str, num):
+        try:
+            self.cursor.execute(
+                f"CALL public.add_book( '{str}',  {num})"
+            )
+        except Exception as e:
+            print(e)
+
+    def changeState(self, num):
+        try:
+            self.cursor.execute(
+                f"CALL public.swap_state({num})"
+            )
+        except Exception as e:
+            print(e)

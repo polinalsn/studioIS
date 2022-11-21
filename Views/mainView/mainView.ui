@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -111,9 +114,9 @@
        <widget class="QCalendarWidget" name="calendarWidget">
         <property name="geometry">
          <rect>
-          <x>0</x>
+          <x>10</x>
           <y>70</y>
-          <width>351</width>
+          <width>401</width>
           <height>261</height>
          </rect>
         </property>
@@ -127,17 +130,55 @@
        <widget class="QTableWidget" name="tableReaders">
         <property name="geometry">
          <rect>
-          <x>910</x>
+          <x>770</x>
           <y>30</y>
-          <width>331</width>
-          <height>261</height>
+          <width>417</width>
+          <height>60</height>
          </rect>
         </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="showGrid">
+         <bool>true</bool>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="rowCount">
+         <number>1</number>
+        </property>
+        <property name="columnCount">
+         <number>2</number>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>200</number>
+        </attribute>
+        <attribute name="verticalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <row/>
+        <column>
+         <property name="text">
+          <string>Самый лучший читатель дня</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Самый худший читатель дня</string>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="labelReaders">
         <property name="geometry">
          <rect>
-          <x>1010</x>
+          <x>920</x>
           <y>0</y>
           <width>141</width>
           <height>31</height>
@@ -169,6 +210,11 @@
           <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
        </widget>
        <widget class="QLineEdit" name="lineFormularId">
         <property name="geometry">
@@ -179,8 +225,13 @@
           <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btnAddBook">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -188,6 +239,11 @@
           <width>121</width>
           <height>31</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Добавить</string>
@@ -215,8 +271,13 @@
           <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btnChangeState">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -225,8 +286,32 @@
           <height>31</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Изменить</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="image">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>230</y>
+          <width>561</width>
+          <height>431</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../../Downloads/4936ce1b33e1317ee56d9f967a1a5512.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -240,7 +325,7 @@
           <x>0</x>
           <y>0</y>
           <width>831</width>
-          <height>661</height>
+          <height>651</height>
          </rect>
         </property>
         <property name="editTriggers">
