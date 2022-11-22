@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: powderblue;
+font: 14pt &quot;Raleway&quot;;
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1281</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: powderblue;
+color: granitegray;</string>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QTableWidget" name="tabels">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1280</width>
+        <height>490</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="tabelBox">
+      <property name="geometry">
+       <rect>
+        <x>990</x>
+        <y>0</y>
+        <width>291</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Клиенты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Детали</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Заказы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Материалы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Мерки</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Модели</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Оборудование</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Портные</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Пошивы моделей</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Склады</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Стандарты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Статусы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Типы материалов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования к моделям</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования клиентов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Этапы пошива</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="searchBtn">
+      <property name="geometry">
+       <rect>
+        <x>1120</x>
+        <y>490</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(226, 115, 150);
+color: white;</string>
+      </property>
+      <property name="text">
+       <string>Поиск</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>550</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line1">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>500</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="field1">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>530</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="field2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>570</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
