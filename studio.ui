@@ -35,6 +35,9 @@ font: 14pt &quot;Raleway&quot;;
      <string notr="true">background-color: powderblue;
 color: granitegray;</string>
     </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Tab 1</string>
@@ -58,10 +61,10 @@ color: granitegray;</string>
      <widget class="QComboBox" name="tabelBox">
       <property name="geometry">
        <rect>
-        <x>990</x>
-        <y>0</y>
+        <x>980</x>
+        <y>490</y>
         <width>291</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -152,7 +155,7 @@ color: granitegray;</string>
       <property name="geometry">
        <rect>
         <x>1120</x>
-        <y>490</y>
+        <y>610</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -169,9 +172,9 @@ color: white;</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>550</y>
+        <y>560</y>
         <width>251</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -184,7 +187,7 @@ color: white;</string>
         <x>0</x>
         <y>500</y>
         <width>251</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -197,24 +200,24 @@ color: white;</string>
         <x>0</x>
         <y>530</y>
         <width>251</width>
-        <height>16</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="field2">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>570</y>
+        <y>600</y>
         <width>251</width>
-        <height>16</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -222,6 +225,458 @@ color: white;</string>
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
+     <widget class="QComboBox" name="tabelBox2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Клиенты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Детали</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Заказы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Материалы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Мерки</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Модели</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Оборудование</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Портные</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Пошивы моделей</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Склады</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Стандарты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Статусы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Типы материалов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования к моделям</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования клиентов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Этапы пошива</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Добавить</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Обновить</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>51</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Заказа</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>79</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Портного</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>109</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Модели</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>139</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Требования</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>169</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Номер пошива</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>199</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Мерок</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>349</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Стандарта</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>379</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Описание</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>289</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Стоимость</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>319</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Дата выполнения</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>229</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ID Клиента</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>259</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Дата заказа</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input1">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>50</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input5">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>170</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input4">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>140</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>80</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input3">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>110</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input6">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>200</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input11">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>350</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input12">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>380</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input10">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>320</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input8">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>260</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input9">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>290</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input7">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>230</y>
+        <width>1001</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="execBtn">
+      <property name="geometry">
+       <rect>
+        <x>1060</x>
+        <y>410</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Выполнить запрос</string>
+      </property>
+      <property name="autoRepeatInterval">
+       <number>98</number>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
