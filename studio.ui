@@ -36,7 +36,7 @@ font: 14pt &quot;Raleway&quot;;
 color: granitegray;</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -228,9 +228,9 @@ color: white;</string>
      <widget class="QComboBox" name="tabelBox2">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>940</x>
         <y>10</y>
-        <width>191</width>
+        <width>321</width>
         <height>31</height>
        </rect>
       </property>
@@ -321,7 +321,7 @@ color: white;</string>
      <widget class="QComboBox" name="comBox">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>730</x>
         <y>10</y>
         <width>191</width>
         <height>31</height>
@@ -661,11 +661,15 @@ color: white;</string>
      <widget class="QPushButton" name="execBtn">
       <property name="geometry">
        <rect>
-        <x>1060</x>
+        <x>1070</x>
         <y>410</y>
         <width>191</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(226, 115, 150);
+color: white;</string>
       </property>
       <property name="text">
        <string>Выполнить запрос</string>

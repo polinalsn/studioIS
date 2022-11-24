@@ -152,7 +152,7 @@ class Server:
         line2 = name.lower()
         try:
             self.cursor.execute(
-                f"SELECT * FROM {db} WHERE LOWER(surname) LIKE '%{line1}%' and LOWER(name) LIKE '%{line2}%' ORDER BY id_tailor;"
+                f"SELECT id_tailor, surname, name, middle_name FROM {db} WHERE LOWER(surname) LIKE '%{line1}%' and LOWER(name) LIKE '%{line2}%' ORDER BY id_tailor;"
             )
             return self.cursor.fetchall()
         except Exception as e:
@@ -277,3 +277,32 @@ class Server:
             print(e)
             return []
 
+    def insert(self, dbName, valuesName, valuesList):
+        try:
+            self.cursor.execute(
+                f'INSERT INTO public."{dbName}" {valuesName} VALUES {valuesList};'
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def update(self, dbName, setValues):
+        try:
+            self.cursor.execute(
+                f'UPDATE public."{dbName}" SET {setValues};'
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def delete(self, dbName, condition):
+        try:
+            self.cursor.execute(
+                f'DELETE FROM public."{dbName}" WHERE {condition};'
+            )
+            return True
+        except Exception as e:
+            print(e)
+            return False
