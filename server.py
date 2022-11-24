@@ -306,3 +306,83 @@ class Server:
         except Exception as e:
             print(e)
             return False
+
+    def avgChestHeight(self):
+        try:
+            self.cursor.execute(
+                'SELECT public.avg_chest_height();'
+            )
+            return self.cursor.fetchall()[0][0]
+        except Exception as e:
+            print(e)
+            return ''
+
+    def orderSum(self):
+        try:
+            self.cursor.execute(
+                'SELECT public.order_sum();'
+            )
+            return self.cursor.fetchall()[0][0]
+        except Exception as e:
+            print(e)
+            return ''
+
+    def calcBackWidth(self, chest):
+        try:
+            self.cursor.execute(
+                f'SELECT public.calc_back_width({chest});'
+            )
+            return 'Ширина спины = ' + str(self.cursor.fetchall()[0][0])
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'
+
+    def calcChestHeight(self, chest):
+        try:
+            self.cursor.execute(
+                f'SELECT public.calc_chest_height({chest});'
+            )
+            return 'Высота груди = ' + str(self.cursor.fetchall()[0][0])
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'
+
+    def calcChestWeightWomen(self, chest):
+        try:
+            self.cursor.execute(
+                f'SELECT public.calc_chest_weight_women({chest});'
+            )
+            return 'Ширина груди = ' + str(self.cursor.fetchall()[0][0])
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'
+
+    def getS(self, len, wid):
+        try:
+            self.cursor.execute(
+                f'SELECT public."getS"({len}, {wid});'
+            )
+            return 'Площадь = ' + str(self.cursor.fetchall()[0][0])
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'
+
+    def giveUseDays(self, id):
+        try:
+            self.cursor.execute(
+                f'SELECT public."give_use_days"({id});'
+            )
+            return 'Количество дней - ' + str(self.cursor.fetchall()[0][0])
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'
+
+    def newStage(self, msNumber, stageNum):
+        try:
+            self.cursor.execute(
+                f'CALL public."new_stage"({msNumber}, {stageNum});'
+            )
+            return 'Заменено успешно'
+        except Exception as e:
+            print(e)
+            return 'Ошибка в веденных данных'

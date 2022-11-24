@@ -26,11 +26,54 @@ class mainView(QtWidgets.QMainWindow):
         loadUi("studio.ui", self)
         self.tabWidget.setTabText(0, 'Поиск по таблицам')
         self.tabWidget.setTabText(1, 'Работа с данными')
+        self.tabWidget.setTabText(2, 'Расчетные функции')
         self.statusbar.showMessage("Ателье, Лесневская Полина Сергеевна")
         self.loadTabTables()
-        self.loadIUDTabels()
+        self.loadTabIUD()
+        self.loadTabExtra()
 
-    def loadIUDTabels(self):
+    def loadTabExtra(self):
+        # -- Кнопки --
+        self.exBtn1.clicked.connect(self.avgChestHeight)
+        self.exBtn2.clicked.connect(self.orderSum)
+        self.exBtn3.clicked.connect(self.calcBackWidth)
+        self.exBtn4.clicked.connect(self.calcChestHeight)
+        self.exBtn5.clicked.connect(self.calcChestWeightWomen)
+        self.exBtn6.clicked.connect(self.getS)
+        self.exBtn7.clicked.connect(self.giveUseDays)
+        self.exBtn8.clicked.connect(self.newStage)
+
+    def avgChestHeight(self):
+        self.statusbar.showMessage('Средняя высота груди = ' + str(self.server.avgChestHeight()))
+
+    def orderSum(self):
+        self.statusbar.showMessage('Количество активных заказов - ' + str(self.server.orderSum()))
+
+    def calcBackWidth(self):
+        if self.exLine1.text() != '':
+           self.statusbar.showMessage(self.server.calcBackWidth(self.exLine1.text()))
+
+    def calcChestHeight(self):
+        if self.exLine2.text() != '':
+            self.statusbar.showMessage(self.server.calcChestHeight(self.exLine2.text()))
+
+    def calcChestWeightWomen(self):
+        if self.exLine3.text() != '':
+            self.statusbar.showMessage(self.server.calcChestWeightWomen(self.exLine3.text()))
+
+    def getS(self):
+        if self.exLine4.text()  != '' and self.exLine5.text():
+            self.statusbar.showMessage(self.server.getS(self.exLine4.text(), self.exLine5.text()))
+
+    def giveUseDays(self):
+        if self.exLine6.text() != '':
+            self.statusbar.showMessage(self.server.giveUseDays(self.exLine6.text()))
+
+    def newStage(self):
+        if self.exLine7.text() != '' and self.exLine8.text() != '':
+            self.statusbar.showMessage(self.server.newStage(self.exLine7.text(), self.exLine8.text()))
+
+    def loadTabIUD(self):
         # -- Кнопки --
         self.execBtn.clicked.connect(self.execQueue)
         # -- Боксы
