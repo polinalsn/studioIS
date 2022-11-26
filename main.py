@@ -18,7 +18,6 @@ widget.setWindowTitle('Ателье')
 # -- Словарь с окнами --
 mainWindow = mainView()
 widget.addWidget(mainWindow)
-mainWindow.setWidget(widget)
 mainWindow.setServer(server)
 mainWindow.loadWindow()
 

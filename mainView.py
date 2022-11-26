@@ -11,9 +11,6 @@ class mainView(QtWidgets.QMainWindow):
     def setServer(self, server):
         self.server = server
 
-    def setWidget(self, widget):
-        self.widget = widget
-
     def setData(self, data):
         if data != []:
             self.data = data
