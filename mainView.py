@@ -24,10 +24,230 @@ class mainView(QtWidgets.QMainWindow):
         self.tabWidget.setTabText(0, 'Поиск по таблицам')
         self.tabWidget.setTabText(1, 'Работа с данными')
         self.tabWidget.setTabText(2, 'Расчетные функции')
+        self.tabWidget.setTabText(3, 'Произвольный запрос')
         self.statusbar.showMessage("Ателье, Лесневская Полина Сергеевна")
         self.loadTabTables()
         self.loadTabIUD()
         self.loadTabExtra()
+        self.loadTabAdmin()
+
+    def loadTabAdmin(self):
+        # -- Кнопки --
+        self.selectBtn.clicked.connect(self.freeExec)
+        self.tabelBox3.currentTextChanged.connect(self.manage)
+
+    def manage(self):
+        match self.tabelBox3.currentText():
+            case 'Клиенты':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Требования клиентов', 'Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_client'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_client', 'surname', 'name', 'middle_name', 'phone_number'])
+            case 'Детали':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_part'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_part', 'description', 'part_name', 'creation_date'])
+            case 'Заказы':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Клиенты', 'Мерки', 'Требования к моделям', 'Пошивы моделей', 'Модели', 'Стандарты',
+                                         'Портные'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_client', 'id_measurements', 'id_demand', 'ms_number', 'id_model', 'id_standart',
+                                     'id_tailor'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_order', 'id_tailor', 'id_model', 'id_demand', 'ms_number', 'id_measurements',
+                                        'id_client', 'order_date', 'order_amount', 'completion_date', 'id_standart',
+                                        'description'])
+            case 'Материалы':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Типы материалов', 'Пошивы моделей', 'Склады'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_material_type', 'id_material', 'id_warehouse'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_material', 'id_warehouse', 'material_name', 'composition', 'id_material_type'])
+            case 'Мерки':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Пошивы моделей', 'Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_measurements'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_measurements', 'chest', 'waist', 'hip', 'hands', 'legs'])
+            case 'Модели':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Требования к моделям', 'Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_demand', 'id_model'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_model', 'id_demand', 'length', 'width'])
+            case 'Оборудование':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_device'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_device', 'device_name', 'using_start_date'])
+            case 'Портные':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_tailor'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_tailor', 'surname', 'name', 'middle_name'])
+            case 'Пошивы моделей':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Оборудование', 'Типы материалов', 'Материалы', 'Мерки', 'Заказы', 'Детали',
+                                         'Этапы пошива', 'Статусы', 'Склады'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_device', 'id_material_type', 'id_material', 'id_measurements', 'ms_number',
+                                     'id_part', 'stage_num', 'id_status', 'id_warehouse'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['ms_number', 'id_measurements', 'id_part', 'sewing_date', 'id_status',
+                                        'id_material', 'id_material_type', 'id_warehouse', 'stage_num', 'id_device'])
+            case 'Склады':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Материалы', 'Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_warehouse'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_warehouse', 'square', 'warehouse_name'])
+            case 'Стандарты':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_standart'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_standart', 'standart_name', 'standart_docs', 'description'])
+            case 'Статусы':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_status'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_status', 'status_name', 'status_date', 'description'])
+            case 'Типы материалов':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Материалы', 'Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_material_type'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_material_type', 'material_name', 'description'])
+            case 'Требования к моделям':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Модели', 'Заказы'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_demand'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_demand', 'demand_name', 'description'])
+            case 'Требования клиентов':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Клиенты'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['id_client'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['id_demand', 'id_client', 'description'])
+            case 'Этапы пошива':
+                self.tabelBox4.clear()
+                self.tabelBox4.addItems(['Пошивы моделей'])
+                self.boxFK.clear()
+                self.boxFK.addItems(['stage_num'])
+                self.boxOrder.clear()
+                self.boxOrder.addItems(['stage_num', 'stage_status', 'stage_description'])
+
+    def getTabel3(self):
+        match self.tabelBox3.currentText():
+            case 'Клиенты':
+                return 'Client'
+            case 'Детали':
+                return 'Part'
+            case 'Заказы':
+                return 'Order'
+            case 'Материалы':
+                return 'Material'
+            case 'Мерки':
+                return 'Measurements'
+            case 'Модели':
+                return 'Model'
+            case 'Оборудование':
+                return 'Devices'
+            case 'Портные':
+                return 'Tailor'
+            case 'Пошивы моделей':
+                return 'Model_sewing'
+            case 'Склады':
+                return 'Warehouse'
+            case 'Стандарты':
+                return 'Standarts'
+            case 'Статусы':
+                return 'Status'
+            case 'Типы материалов':
+                return 'Material_type'
+            case 'Требования к моделям':
+                return 'Model_demand'
+            case 'Требования клиентов':
+                return 'Client_demand'
+            case 'Этапы пошива':
+                return 'Sewing_stage'
+
+    def getTabel4(self):
+        match self.tabelBox4.currentText():
+            case 'Клиенты':
+                return 'Client'
+            case 'Детали':
+                return 'Part'
+            case 'Заказы':
+                return 'Order'
+            case 'Материалы':
+                return 'Material'
+            case 'Мерки':
+                return 'Measurements'
+            case 'Модели':
+                return 'Model'
+            case 'Оборудование':
+                return 'Devices'
+            case 'Портные':
+                return 'Tailor'
+            case 'Пошивы моделей':
+                return 'Model_sewing'
+            case 'Склады':
+                return 'Warehouse'
+            case 'Стандарты':
+                return 'Standarts'
+            case 'Статусы':
+                return 'Status'
+            case 'Типы материалов':
+                return 'Material_type'
+            case 'Требования к моделям':
+                return 'Model_demand'
+            case 'Требования клиентов':
+                return 'Client_demand'
+            case 'Этапы пошива':
+                return 'Sewing_stage'
+
+    def freeExec(self):
+        self.tabelFree.clear()
+        data = []
+        match self.selectBox.currentText():
+            case 'SELECT':
+                data = self.server.selectFree(self.lineFree.text(), self.getTabel3())
+            case 'SELECT INNER JOIN':
+                data = self.server.selectIJ(self.lineFree.text(), self.getTabel3(), self.getTabel4(), self.boxFK.currentText())
+            case 'SELECT GROUP BY':
+                data = self.server.selectGB(self.lineFree.text(), self.getTabel3(), self.boxOrder.currentText())
+        try:
+            self.tabelFree.setColumnCount(len(data[0]))
+            self.tabelFree.setRowCount(len(data))
+            for row in range(len(data)):
+                for column in range(len(data[0])):
+                    self.tabelFree.setItem(row, column, QtWidgets.QTableWidgetItem(str(data[row][column])))
+            self.statusbar.showMessage('Успешно выполнен SELECT')
+        except Exception as e:
+            print(e)
+            self.statusbar.showMessage('Ошибка при попытке выполнить SELECT')
 
     def loadTabExtra(self):
         # -- Кнопки --

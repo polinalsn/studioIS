@@ -1097,6 +1097,263 @@ color: white;</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Страница</string>
+     </attribute>
+     <widget class="QPushButton" name="selectBtn">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>10</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(226, 115, 150);
+color: white;</string>
+      </property>
+      <property name="text">
+       <string>Выполнить запрос</string>
+      </property>
+      <property name="autoRepeatInterval">
+       <number>98</number>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="tabelBox3">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>10</y>
+        <width>321</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Клиенты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Детали</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Заказы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Материалы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Мерки</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Модели</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Оборудование</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Портные</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Пошивы моделей</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Склады</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Стандарты</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Статусы</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Типы материалов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования к моделям</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Требования клиентов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Этапы пошива</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="selectBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>SELECT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SELECT INNER JOIN</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SELECT GROUP BY</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="lineFree">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>10</y>
+        <width>531</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tabelFree">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>1261</width>
+        <height>541</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="tabelBox4">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>60</y>
+        <width>321</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Требования клиентов</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Заказы</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="boxFK">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>60</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>id_client</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="boxOrder">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>id_client</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>surname</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>name</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>middle_name</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>phone_number</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar">

@@ -386,3 +386,33 @@ class Server:
         except Exception as e:
             print(e)
             return 'Ошибка в веденных данных'
+
+    def selectFree(self, values, dbName):
+        try:
+            self.cursor.execute(
+                f'SELECT {values} FROM public."{dbName}";'
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
+
+    def selectIJ(self, values, dbName, dbNameJoin, key):
+        try:
+            self.cursor.execute(
+                f'SELECT {values} FROM public."{dbName}" INNER JOIN public."{dbNameJoin}" ON "{dbNameJoin}".{key} = "{dbName}".{key};'
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
+
+    def selectGB(self, values, dbName, key):
+        try:
+            self.cursor.execute(
+                f'SELECT {values} FROM public."{dbName}" GROUP BY {key}'
+            )
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(e)
+            return []
